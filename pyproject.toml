@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "emtest"
-version = "0.0.1"
+version = "0.0.2"
 description = "Testing utilities which I find useful."
 readme = {file = "README.md", content-type = "text/markdown"}
 authors = [{ name = "Emendir" , email = "dev@emendir.tech"}]
@@ -20,6 +20,7 @@ dynamic = ["dependencies"]
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include=["emtest", "_auto_run_with_pytest"]
 
 [tool.setuptools.dynamic]
 dependencies = {file = ["requirements.txt"]}

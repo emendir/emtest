@@ -29,20 +29,24 @@ This file is **required** for the testing setup to work properly. It performs tw
 - It's automatically loaded by pytest before running any tests
 
 ### `test_demo.py` - The Test File
-This file contains your test functions.
-It also demonstrates how to structure code for preparation and cleanup operations to be performed before and after the tests.
-It support the **dual execution pattern** - it can be run both as a pytest test and as a standalone Python script.
+This file contains your test functions and demonstrates how to structure code for preparation and cleanup operations.
+It supports the **dual execution pattern** - it can be run both as a pytest test and as a standalone Python script.
 
 
 **Key Components:**
 
-1. **Module Import & Validation**:
+1. **Auto-Run Import** (enables dual execution):
+   ```python
+   import _auto_run_with_pytest  # noqa
+   ```
+
+2. **Module Import & Validation** (can be placed in `conftest.py` instead):
    ```python
    import demo_project
    assert_is_loaded_from_source(SRC_DIR, demo_project)
    ```
 
-2. **Standard Test Functions**:
+3. **Standard Test Functions**:
    ```python
    def test_pass():
        assert demo_project.add_numbers(1,1) == 2
@@ -51,21 +55,10 @@ It support the **dual execution pattern** - it can be run both as a pytest test 
        assert demo_project.add_numbers(1,1) != 2
    ```
 
-3. **Thread Cleanup Testing**:
+4. **Thread Cleanup Testing**:
    ```python
    def test_threads_cleanup():
        assert await_thread_cleanup(timeout=2)
-   ```
-
-4. **Dual Execution Block**:
-   ```python
-   if __name__ == "__main__":
-       run_pytest(
-           test_path=__file__,
-           breakpoints=BREAKPOINTS,
-           deactivate_pytest_output=True,
-           enable_print=True
-       )
    ```
 
 ### `DemoProject/demo_project.py`
@@ -96,10 +89,10 @@ cd examples
 python test_demo.py
 ```
 
-This uses emtest's custom `run_pytest` function with:
+This automatically reruns the file using emtest's custom `run_pytest` function with:
 - **Minimal output**: Clean, colored symbols (✓/✗/-) instead of verbose pytest output
 - **Print enabled**: Any print statements in your tests will be visible
-- **Custom configuration**: Uses the settings defined in the `if __name__ == "__main__"` block
+- **Custom configuration**: Uses the settings defined in the `_auto_run_with_pytest` module
 
 ### Comparing the Two Methods
 

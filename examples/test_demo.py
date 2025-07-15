@@ -46,6 +46,9 @@ def test_fail():
     """This test intentionally fails to show failure output in different execution modes."""
     assert demo_project.add_numbers(1, 1) != 2
 
+def test_error():
+    raise Exception("This test has a bug in it.")
+
 # Thread cleanup validation test
 
 

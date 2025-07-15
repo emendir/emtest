@@ -17,14 +17,15 @@ if not (
     )
 ):
     test_file = os.path.abspath(sys.argv[0])
+    pytest_args=sys.argv[1:]
     # print("RERUNNING IN PYTEST:", test_file)
 
     # Use emtest's custom test runner with specific settings:
     run_pytest(
         test_path=test_file,              # Run tests in this file
         breakpoints=BREAKPOINTS,         # Enable/disable debugger on failures
-        deactivate_pytest_output=True,   # Use minimal reporter (✓/✗/- symbols)
-        enable_print=True                # Show print statements in tests
+        enable_print=True,               # Show print statements in tests
+        pytest_args=pytest_args
     )
 
     sys.exit(-1)

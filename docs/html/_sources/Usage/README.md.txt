@@ -1,4 +1,4 @@
-# Examples - emtest Usage Demo
+# Usage
 
 This directory demonstrates how to use emtest utilities in a real testing scenario with source code validation and dual execution patterns.
 
@@ -7,7 +7,7 @@ This example serves as a template for setting up your own testing workflows with
 ## Directory Structure
 
 ```
-examples/
+docs/Usage/
 ├── README.md           # This file
 ├── conftest.py         # Pytest configuration and path setup
 ├── test_demo.py        # Main test file with dual execution
@@ -77,7 +77,7 @@ You can execute the tests in two different ways:
 
 ### Method 1: Standard pytest
 ```bash
-cd examples
+cd docs/Usage
 pytest test_demo.py
 ```
 
@@ -85,26 +85,43 @@ This runs pytest normally with all its standard features and output.
 
 ### Method 2: Standalone Python script
 ```bash
-cd examples  
+cd docs/Usage
 python test_demo.py
 ```
 
-This automatically reruns the file using emtest's custom `run_pytest` function with:
-- **Minimal output**: Clean, colored symbols (✓/✗/-) instead of verbose pytest output
-- **Print enabled**: Any print statements in your tests will be visible
-- **Custom configuration**: Uses the settings defined in the `_auto_run_with_pytest` module
+This automatically reruns the file using emtest's custom `run_pytest` function.
 
-### Comparing the Two Methods
+### Minimal Output
 
-**pytest test_demo.py output:**
-- Standard pytest verbose output
-- Shows collected items, test progress, and detailed results
-- Uses default pytest formatting
+To get minimal, clean output with colored symbols, set the `PRINT_ERRORS` environment variable:
+```sh
+PRINT_ERRORS=False
+python test_demo.py
+```
 
-**python test_demo.py output:**
-- Minimal, clean output with colored symbols:
 ```
 ✓ test_pass
 ✗ test_fail  
 ✓ test_threads_cleanup
+```
+
+You can change the default behaviour in conftest.py in the line:
+```py
+PRINT_ERRORS = env_vars.bool("PRINT_ERRORS", default=True)
+```
+
+
+### Enable Breakpoints
+
+To enable python-debugger breakpoints on test failures, pass the `--pdb` option:
+```sh
+python test_demo.py -pdb
+```
+
+### Enable Print Statements
+
+Pytest disables all output from print commands in your test code.
+To enable them, pass the `-s` option:
+```sh
+python test_demo.py -s
 ```

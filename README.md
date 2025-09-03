@@ -26,17 +26,18 @@ pip install emtest
 
 ## Usage
 
-See the `examples/` directory for complete working examples showing:
+See the [Usage docs](docs/Usage/README.md) for explanations and a complete working example showing:
 - Basic test setup with `conftest.py`
 - Dual execution pattern implementation
 - Source loading validation
 - Thread cleanup testing
-
+- Options like minising output, python-debugger breakpoints and more
 
 ## Documentation
 
 - [Full Documentation](docs/README.md):
   - [API-Reference](docs/API-Reference/README.html)
+  - [Usage](docs/Usage/README.md)
 
 ## Roadmap
 

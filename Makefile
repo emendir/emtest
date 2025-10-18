@@ -31,16 +31,16 @@ deps: ## Install dependencies from requirements.txt
 test: ## Run test suite with pytest
 	$(PYTHON) -m pytest -v tests
 
-lint: ## Lint code with ruff
-	ruff check src tests
-
-typecheck: ## Type-check with mypy
-	mypy src tests
+# lint: ## Lint code with ruff
+# 	ruff check src tests
+#
+# typecheck: ## Type-check with mypy
+# 	mypy src tests
 
 format: ## Autoformat code with ruff
 	ruff format src tests
 
-check: lint typecheck test ## Run lint, typecheck, and test
+# check: lint typecheck test ## Run lint, typecheck, and test
 
 coverage: ## Run tests with coverage report
 	$(PYTHON) -m pytest --cov=src --cov-report=term-missing
@@ -53,11 +53,17 @@ coverage: ## Run tests with coverage report
 build: clean ## Build distribution package
 	$(PYTHON) -m build
 
-clean: ## Remove build artifacts
-	rm -rf $(DIST_DIR) build *.egg-info .pytest_cache .mypy_cache .ruff_cache .coverage htmlcov
+clean: ## Remove items from CLEANUP section in .gitignore
+	@tmpfile=$$(mktemp); \
+	sed -n '/# >>> CLEANUP/,/# <<< CLEANUP/p' .gitignore \
+		| grep -v '^#' \
+		| grep -v '^[[:space:]]*$$' > $$tmpfile; \
+	git ls-files --ignored --exclude-from=$$tmpfile --others --directory -z \
+		| xargs -0 rm -rf; \
+	rm $$tmpfile
 
-install: build ## Install built wheel into environment
-	$(PIP) install $(DIST_DIR)/*.whl
+# install: build ## Install built wheel into environment
+# 	$(PIP) install $(DIST_DIR)/*.whl
 
 # ----------------------------
 # Documentation
@@ -67,16 +73,16 @@ install: build ## Install built wheel into environment
 docs: ## Build Sphinx documentation
 	$(MAKE) -C docs/_docs_tools all
 
-# ----------------------------
-# Release Helpers
-# ----------------------------
-.PHONY: dist upload
-
-dist: build ## List built distributions
-	ls -lh $(DIST_DIR)
-
-upload: build ## Upload package to PyPI (requires twine)
-	twine upload $(DIST_DIR)/*
+# # ----------------------------
+# # Release Helpers
+# # ----------------------------
+# .PHONY: dist upload
+#
+# dist: build ## List built distributions
+# 	ls -lh $(DIST_DIR)
+#
+# upload: build ## Upload package to PyPI (requires twine)
+# 	twine upload $(DIST_DIR)/*
 
 # ----------------------------
 # Help
@@ -85,4 +91,5 @@ upload: build ## Upload package to PyPI (requires twine)
 help: ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) \
 		| awk 'BEGIN {FS = ":.*?## "}; {printf "  \033[36m%-15s\033[0m %s\n", $$1, $$2}'
+
 

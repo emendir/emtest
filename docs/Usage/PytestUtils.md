@@ -137,3 +137,12 @@ Running tests for test_demo
 
 Finished tests for test_demo
 ```
+
+### Enable Logs From `logging`
+
+Pytest captures logs from python's built-in `logging` module. To get pytest to show this logs on the console while running, use the option `--log-cli-level=DEBUG`:
+```
+pytest test_demo.py --log-cli-level=DEBUG
+```
+
+To filter out the logs of a certain logger given its name, use `--log-disable=LOGGER_NAME`

@@ -26,8 +26,9 @@ pip install emtest
 
 ## Usage
 
-See the [Usage docs](docs/Usage/README.md) for explanations and a complete working example showing:
+See the [Usage docs](docs/Usage/PytestUtils.md) for explanations and a complete working example showing:
 - Basic test setup with `conftest.py`
+- Showing and hiding logs
 - Dual execution pattern implementation
 - Source loading validation
 - Thread cleanup testing
@@ -37,7 +38,9 @@ See the [Usage docs](docs/Usage/README.md) for explanations and a complete worki
 
 - [Full Documentation](docs/README.md):
   - [API-Reference](docs/API-Reference/README.html)
-  - [Usage](docs/Usage/README.md)
+  - Usage:
+    - [PytestUtils](docs/Usage/PytestUtils.md)
+    - [LogRecording](docs/Usage/LogRecording.md)
 
 ## Roadmap
 
@@ -49,18 +52,17 @@ See the [Usage docs](docs/Usage/README.md) for explanations and a complete worki
 - GitHub Issues: if you find bugs, other issues, or would like to submit feature requests
 - GitHub Merge Requests: if you think you know what you're doing, you're very welcome!
 
-### Donations
+### Donate
 
 To support me in my work on this and other projects, you can make donations with the following currencies:
 
 - **Bitcoin:** `BC1Q45QEE6YTNGRC5TSZ42ZL3MWV8798ZEF70H2DG0`
 - **Ethereum:** `0xA32C3bBC2106C986317f202B3aa8eBc3063323D4`
-- [**Fiat** (via Credit or Debit Card, Apple Pay, Google Pay, Revolut Pay)](https://checkout.revolut.com/pay/4e4d24de-26cf-4e7d-9e84-ede89ec67f32)
+- [Credit Card, Debit Card, Bank Transfer, Apple Pay, Google Pay, Revolut Pay)](https://checkout.revolut.com/pay/4e4d24de-26cf-4e7d-9e84-ede89ec67f32)
 
 Donations help me:
 - dedicate more time to developing and maintaining open-source projects
-- cover costs for IT infrastructure
-- finance projects requiring additional hardware & compute
+- cover costs for IT resources
 
 ## About the Developer
 

@@ -11,6 +11,7 @@ logger.addHandler(handler)
 
 logger.start_recording()
 logger.debug("Hello there!")
+
 try:
     logger.start_recording("STEPS")
     logger.debug("step 1")

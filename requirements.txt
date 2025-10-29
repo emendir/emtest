@@ -1,2 +1,4 @@
-tqdm
 environs
+pytest
+termcolor
+tqdm

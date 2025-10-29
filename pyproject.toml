@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "emtest"
-version = "0.0.5"
+version = "0.0.6"
 description = "Testing utilities which I find useful."
 readme = {file = "README.md", content-type = "text/markdown"}
 authors = [{ name = "Emendir" , email = "dev@emendir.tech"}]
